@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<!--
+  =========================================================================
+  KUSUMA POLINA — PORTFOLIO WEBSITE
+  =========================================================================
+  SETUP / CONFIGURATION NOTES (search for "CONFIG:" to find every spot
+  that needs a real value before you deploy):
+
+  1. RESUME PDF  — CONFIG: RESUME LINK
+     Upload your resume PDF next to this file (e.g. "Kusuma_Polina_Resume.pdf")
+     and update the two <a href="..."> tags that currently point to
+     "Kusuma_Polina_Resume.pdf".
+
+  2. PROJECT REPOS — CONFIG: PROJECT LINKS
+     Each project's "View on GitHub" button currently links to your GitHub
+     profile (https://github.com/kusumapoluna23-svg) since individual repo
+     names were not provided. Once each project has its own repo, update
+     the matching href to the exact repo URL.
+
+  3. CERTIFICATES — CONFIG: CERTIFICATES
+     Certificate cards are ready to receive an image or PDF link. Replace
+     the "#" placeholders in the certifications section once you have the
+     files, and remove the "Coming soon" badge.
+
+  4. CONTACT FORM — This form uses a mailto: link (opens the visitor's own
+     email app pre-filled with their message) so no backend or API key is
+     needed. If you later want messages delivered without opening an email
+     app, wire the form up to a form backend of your choice (e.g. your own
+     server, or a form-handling service) and POST the fields instead.
+
+  DEPLOYMENT: This is a single static file. Drag it into Netlify/Vercel,
+  or push it to a GitHub repo named "yourusername.github.io" (rename to
+  index.html, which it already is) and enable GitHub Pages.
+  =========================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kusuma Polina — B.Tech CSE (AI &amp; ML) Portfolio</title>
+<meta name="description" content="Portfolio of Kusuma Polina, B.Tech Computer Science &amp; Engineering student specializing in Artificial Intelligence &amp; Machine Learning at Sandip University, Nashik. Projects, skills, and contact information.">
+<meta name="keywords" content="Kusuma Polina, AI ML student, B.Tech CSE portfolio, Sandip University, Machine Learning intern">
+<meta name="author" content="Kusuma Polina">
+<meta property="og:title" content="Kusuma Polina — B.Tech CSE (AI & ML) Portfolio">
+<meta property="og:description" content="AI & ML student portfolio — projects, skills, and contact information.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============================= TOKENS ============================= */
+  :root{
+    --bg:#0a0e17;
+    --bg-soft:#0d1220;
+    --surface:#121a2c;
+    --surface-2:#0f1524;
+    --border:#212a40;
+    --border-soft:#1a2236;
+    --text:#e9edf5;
+    --text-muted:#8b93a8;
+    --text-faint:#5b6480;
+    --accent:#00d9b8;
+    --accent-soft:rgba(0,217,184,0.12);
+    --accent-2:#ffb454;
+    --danger:#ff6b6b;
+    --success:#00d9b8;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --maxw:1180px;
+    --radius:14px;
+    --radius-sm:8px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f5f1;
+    --bg-soft:#efeee8;
+    --surface:#ffffff;
+    --surface-2:#fbfaf6;
+    --border:#e1ded4;
+    --border-soft:#ebe8de;
+    --text:#181a1f;
+    --text-muted:#5c6270;
+    --text-faint:#8a8f9c;
+    --accent:#00a891;
+    --accent-soft:rgba(0,168,145,0.10);
+    --accent-2:#c97b1f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ }
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  section{scroll-margin-top:76px;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--accent); color:#04140f;
+    padding:10px 16px; z-index:200; border-radius:0 0 8px 0; font-weight:600;
+  }
+  .skip-link:focus{left:0;}
+
+  h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; line-height:1.15; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.8rem; color:var(--accent);
+    margin-bottom:10px; display:block;
+  }
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom:12px;}
+  .section-head p{color:var(--text-muted); font-size:1.02rem;}
+  .section-pad{padding:88px 0;}
+  .section-pad + .section-pad{border-top:1px solid var(--border-soft);}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+  /* ============================= NAV ============================= */
+  header.site-nav{
+    position:sticky; top:0; z-index:100;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between; height:68px;
+  }
+  .logo{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px;}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;}
+  .nav-links{display:flex; gap:30px; align-items:center;}
+  .nav-links a{
+    font-size:0.94rem; color:var(--text-muted); position:relative; padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--text);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-4px; height:2px; width:0;
+    background:var(--accent); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .theme-toggle{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--border);
+    background:var(--surface); display:flex; align-items:center; justify-content:center;
+    color:var(--text); transition:border-color .2s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{border-color:var(--accent); transform:translateY(-1px);}
+  .theme-toggle svg{width:18px; height:18px;}
+  .theme-toggle .sun{display:none;}
+  :root[data-theme="light"] .theme-toggle .moon{display:none;}
+  :root[data-theme="light"] .theme-toggle .sun{display:block;}
+
+  .hamburger{
+    display:none; width:38px; height:38px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); align-items:center; justify-content:center; flex-direction:column; gap:4px;
+  }
+  .hamburger span{display:block; width:16px; height:2px; background:var(--text); transition:transform .25s ease, opacity .25s ease;}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .mobile-panel{
+    display:none; flex-direction:column; gap:2px; padding:10px 24px 20px;
+    border-bottom:1px solid var(--border-soft); background:var(--bg-soft);
+  }
+  .mobile-panel a{padding:12px 4px; border-bottom:1px solid var(--border-soft); font-size:1rem; color:var(--text);}
+  .mobile-panel a:last-child{border-bottom:none;}
+  .mobile-panel.open{display:flex;}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+  }
+
+  /* ============================= BUTTONS ============================= */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 24px;
+    border-radius:999px; font-weight:600; font-size:0.95rem; border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--accent); color:#04140f;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px -8px var(--accent-soft), 0 0 0 1px var(--accent);}
+  .btn-outline{background:transparent; color:var(--text); border-color:var(--border);}
+  .btn-outline:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+  .btn-ghost{background:var(--surface); color:var(--text); border-color:var(--border);}
+  .btn-ghost:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .btn-sm{padding:9px 16px; font-size:0.85rem;}
+
+  /* ============================= HERO ============================= */
+  .hero{
+    position:relative; padding:100px 0 90px; overflow:hidden;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem); line-height:1.02; margin-bottom:18px;
+  }
+  .hero .role{
+    font-family:var(--font-mono); font-size:clamp(0.95rem,1.6vw,1.15rem); color:var(--accent);
+    margin-bottom:22px;
+  }
+  .hero p.intro{
+    font-size:1.08rem; color:var(--text-muted); max-width:520px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:36px;}
+  .hero-socials{display:flex; gap:14px;}
+  .social-icon{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; background:var(--surface);
+    transition:border-color .2s ease, transform .2s ease, color .2s ease;
+  }
+  .social-icon svg{width:19px; height:19px;}
+  .social-icon:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+
+  .hero-visual{position:relative; height:420px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border-soft); background:var(--surface-2);}
+  .hero-visual canvas{width:100%; height:100%; display:block;}
+  .hero-visual .visual-caption{
+    position:absolute; bottom:14px; left:16px; font-family:var(--font-mono); font-size:0.72rem;
+    color:var(--text-faint);
+  }
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding-top:56px;}
+    .hero-visual{height:260px; order:-1;}
+  }
+
+  /* ============================= ABOUT ============================= */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
+  .about-grid p{color:var(--text-muted); margin-bottom:16px; font-size:1.02rem;}
+  .about-grid p:last-of-type{margin-bottom:0;}
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .stat-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:22px 18px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .stat-card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .stat-card .label{font-family:var(--font-mono); font-size:0.85rem; color:var(--text); font-weight:500;}
+  .stat-card svg{width:20px; height:20px; color:var(--accent); margin-bottom:12px;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* ============================= EDUCATION ============================= */
+  .timeline{position:relative; padding-left:34px; border-left:2px solid var(--border);}
+  .timeline-item{position:relative; padding-bottom:6px;}
+  .timeline-item::before{
+    content:""; position:absolute; left:-42px; top:4px; width:14px; height:14px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .timeline-item .period{font-family:var(--font-mono); font-size:0.85rem; color:var(--accent); margin-bottom:6px; display:block;}
+  .timeline-item h3{font-size:1.3rem; margin-bottom:6px;}
+  .timeline-item .org{color:var(--text-muted); font-size:0.98rem;}
+
+  /* ============================= SKILLS ============================= */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:22px;}
+  .skill-cat{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:24px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .skill-cat:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .skill-cat h3{font-size:1.02rem; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+  .skill-cat h3 svg{width:18px;height:18px;color:var(--accent);}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--font-mono); font-size:0.8rem; padding:6px 12px; border-radius:999px;
+    background:var(--accent-soft); color:var(--text); border:1px solid var(--border-soft);
+  }
+
+  /* ============================= PROJECTS ============================= */
+  .project-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px;}
+  .project-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:26px; display:flex; flex-direction:column; transition:border-color .2s ease, transform .2s ease;
+  }
+  .project-card:hover{border-color:var(--accent); transform:translateY(-4px);}
+  .project-card h3{font-size:1.18rem; margin-bottom:10px;}
+  .project-card p{color:var(--text-muted); font-size:0.96rem; margin-bottom:18px; flex-grow:1;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px;}
+  .tag{font-family:var(--font-mono); font-size:0.72rem; padding:4px 10px; border-radius:6px; background:var(--surface-2); color:var(--text-muted); border:1px solid var(--border-soft);}
+
+  /* ============================= CERTIFICATIONS ============================= */
+  .cert-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;}
+  .cert-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; gap:10px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .cert-card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .cert-card h3{font-size:1rem;}
+  .cert-badge{
+    align-self:flex-start; font-family:var(--font-mono); font-size:0.7rem; color:var(--accent-2);
+    border:1px solid var(--border-soft); padding:3px 9px; border-radius:6px;
+  }
+
+  /* ============================= STRENGTHS ============================= */
+  .strength-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .strength-chip{
+    padding:12px 20px; border-radius:var(--radius-sm); background:var(--surface); border:1px solid var(--border);
+    font-size:0.95rem; transition:border-color .2s ease, transform .2s ease;
+  }
+  .strength-chip:hover{border-color:var(--accent); transform:translateY(-2px);}
+
+  /* ============================= CAREER ============================= */
+  .career-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+  .career-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .career-card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .career-card h3{font-size:1.02rem; font-weight:500;}
+
+  /* ============================= RESUME ============================= */
+  .resume-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:48px; text-align:center; max-width:640px; margin:0 auto;
+  }
+  .resume-box h2{font-size:1.6rem; margin-bottom:14px;}
+  .resume-box p{color:var(--text-muted); margin-bottom:26px;}
+
+  /* ============================= CONTACT ============================= */
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
+  .contact-info-item{display:flex; gap:14px; align-items:flex-start; margin-bottom:24px;}
+  .contact-info-item svg{width:20px; height:20px; color:var(--accent); flex-shrink:0; margin-top:2px;}
+  .contact-info-item .label{font-size:0.82rem; color:var(--text-faint); font-family:var(--font-mono); margin-bottom:2px;}
+  .contact-info-item .value{font-size:1rem;}
+
+  .form-field{margin-bottom:18px;}
+  .form-field label{display:block; font-size:0.86rem; color:var(--text-muted); margin-bottom:7px;}
+  .form-field input, .form-field textarea{
+    width:100%; padding:13px 14px; border-radius:var(--radius-sm); background:var(--surface-2);
+    border:1px solid var(--border); color:var(--text); font-family:var(--font-body); font-size:0.96rem;
+    transition:border-color .2s ease;
+  }
+  .form-field input:focus, .form-field textarea:focus{border-color:var(--accent); outline:none;}
+  .form-field textarea{resize:vertical; min-height:120px;}
+  .form-error{color:var(--danger); font-size:0.8rem; margin-top:6px; display:none;}
+  .form-field.invalid input, .form-field.invalid textarea{border-color:var(--danger);}
+  .form-field.invalid .form-error{display:block;}
+  .form-status{
+    margin-top:16px; padding:12px 14px; border-radius:var(--radius-sm); font-size:0.9rem; display:none;
+  }
+  .form-status.show{display:block;}
+  .form-status.success{background:rgba(0,217,184,0.12); color:var(--success); border:1px solid var(--accent);}
+  .form-status.error{background:rgba(255,107,107,0.1); color:var(--danger); border:1px solid var(--danger);}
+
+  @media (max-width:800px){ .contact-grid{grid-template-columns:1fr; gap:36px;} }
+
+  /* ============================= FOOTER ============================= */
+  footer{border-top:1px solid var(--border-soft); padding:44px 0;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-brand .name{font-family:var(--font-display); font-weight:600; font-size:1.05rem;}
+  .footer-brand .tag{color:var(--text-muted); font-size:0.88rem; margin-top:4px;}
+  .footer-socials{display:flex; gap:12px;}
+  .footer-copy{width:100%; text-align:center; margin-top:28px; color:var(--text-faint); font-size:0.82rem;}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ============================= NAV ============================= -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo" aria-label="Kusuma Polina, home"><span class="dot"></span>Kusuma Polina</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-panel" id="mobilePanel" aria-label="Mobile">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================= HERO ============================= -->
+  <section id="home" class="hero wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">B.Tech Computer Science &amp; Engineering · AI &amp; Machine Learning</span>
+      <h1>Kusuma Polina</h1>
+      <p class="role">Artificial Intelligence &amp; Machine Learning Student</p>
+      <p class="intro">Passionate Computer Science Engineering student exploring Artificial Intelligence, Machine Learning, Data Science, Web Development, and LLM technologies.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
+        <!-- CONFIG: RESUME LINK — replace with the real resume file path -->
+        <a href="Kusuma_Polina_Resume.pdf" download class="btn btn-outline">Download Resume</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="hero-socials">
+        <a class="social-icon" href="https://www.linkedin.com/in/kusuma-polina-18a764403" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 11.01-4.12 2.06 2.06 0 01-.01 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+        </a>
+        <a class="social-icon" href="https://github.com/kusumapoluna23-svg" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.66.5 12.03c0 5.1 3.29 9.42 7.86 10.95.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.55-3.88-1.55-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a10.98 10.98 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.53 10.53 0 0023.5 12.03C23.5 5.66 18.35.5 12 .5z"/></svg>
+        </a>
+        <a class="social-icon" href="mailto:kusumapolina2@gmail.com" aria-label="Send an email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <canvas id="netCanvas"></canvas>
+      <span class="visual-caption">// neural pathways, visualized</span>
+    </div>
+  </section>
+
+  <!-- ============================= ABOUT ============================= -->
+  <section id="about" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">About</span>
+      <h2>A student building toward AI, one project at a time</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Kusuma Polina is a motivated B.Tech Computer Science &amp; Engineering student specializing in Artificial Intelligence &amp; Machine Learning at Sandip University, Nashik. She's focused on building practical technology projects while steadily strengthening her programming, problem-solving, and AI skills.</p>
+        <p>Her interests span machine learning and data science through to full-stack web development, with a particular curiosity about how large language models are changing the way software gets built. She's currently looking for internship and placement opportunities where she can apply what she's learning to real problems.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>
+          <div class="label">B.Tech Student</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+          <div class="label">AI &amp; ML Specialization</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <div class="label">Multiple Projects</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+          <div class="label">Technical Workshops</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= EDUCATION ============================= -->
+  <section id="education" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Education</span>
+      <h2>Academic background</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="period">2025 — 2029</span>
+        <h3>B.Tech — Computer Science &amp; Engineering (AI &amp; ML)</h3>
+        <p class="org">Sandip University, Nashik, Maharashtra</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= SKILLS ============================= -->
+  <section id="skills" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Skills</span>
+      <h2>Technologies I'm learning and working with</h2>
+      <p>Presented as areas of active study and practice, not claims of mastery.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Programming</h3>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">JavaScript</span></div>
+      </div>
+      <div class="skill-cat">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg>Web Development</h3>
+        <div class="chip-row"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React.js</span><span class="chip">Node.js</span></div>
+      </div>
+      <div class="skill-cat">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>Database</h3>
+        <div class="chip-row"><span class="chip">MySQL</span></div>
+      </div>
+      <div class="skill-cat">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Tools</h3>
+        <div class="chip-row"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Docker</span><span class="chip">VS Code</span></div>
+      </div>
+      <div class="skill-cat">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>AI &amp; Data</h3>
+        <div class="chip-row"><span class="chip">Artificial Intelligence</span><span class="chip">Machine Learning</span><span class="chip">Data Science</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PROJECTS ============================= -->
+  <section id="projects" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Projects</span>
+      <h2>Things I've built and explored</h2>
+    </div>
+    <div class="project-grid">
+      <article class="project-card">
+        <h3>Personal Portfolio Website</h3>
+        <p>Designed and developed a responsive personal portfolio website using HTML and CSS to present academic details, skills, projects, and contact information.</p>
+        <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        <!-- CONFIG: PROJECT LINKS — point to the specific repo once created -->
+        <a href="https://github.com/kusumapoluna23-svg" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">View on GitHub</a>
+      </article>
+      <article class="project-card">
+        <h3>Sun Movies — Movie Streaming Website</h3>
+        <p>Designed a responsive movie-streaming website concept with a modern interface and features such as movie details, login/signup, watchlist, and responsive navigation.</p>
+        <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        <a href="https://github.com/kusumapoluna23-svg" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">View on GitHub</a>
+      </article>
+      <article class="project-card">
+        <h3>AI/ML &amp; Data Science Projects</h3>
+        <p>Explored practical machine-learning projects using classification and regression techniques and worked with datasets for data analysis.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Data Science</span></div>
+        <a href="https://github.com/kusumapoluna23-svg" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">View on GitHub</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================= CERTIFICATIONS ============================= -->
+  <section id="certifications" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Certifications &amp; Workshops</span>
+      <h2>Learning programs and workshops</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <span class="cert-badge">Coming soon</span>
+        <h3>Scaler Workshop — Technical Skill Development</h3>
+      </div>
+      <div class="cert-card">
+        <span class="cert-badge">Coming soon</span>
+        <h3>AI &amp; Machine Learning Learning Programs</h3>
+      </div>
+      <div class="cert-card">
+        <span class="cert-badge">Coming soon</span>
+        <h3>Data Science &amp; Machine Learning Training</h3>
+      </div>
+      <div class="cert-card">
+        <span class="cert-badge">Coming soon</span>
+        <h3>GitHub &amp; Docker Practical Learning</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= STRENGTHS ============================= -->
+  <section id="strengths" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Strengths</span>
+      <h2>Skills &amp; strengths beyond the code</h2>
+    </div>
+    <div class="strength-row">
+      <span class="strength-chip">Problem Solving</span>
+      <span class="strength-chip">Communication</span>
+      <span class="strength-chip">Teamwork</span>
+      <span class="strength-chip">Leadership</span>
+      <span class="strength-chip">Creativity</span>
+      <span class="strength-chip">Quick Learning</span>
+      <span class="strength-chip">Time Management</span>
+    </div>
+  </section>
+
+  <!-- ============================= CAREER INTERESTS ============================= -->
+  <section id="career" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Career Interests</span>
+      <h2>Where I'd like to grow</h2>
+    </div>
+    <div class="career-grid">
+      <div class="career-card"><h3>AI Engineer</h3></div>
+      <div class="career-card"><h3>Machine Learning Engineer</h3></div>
+      <div class="career-card"><h3>LLM Engineer</h3></div>
+      <div class="career-card"><h3>Data Scientist</h3></div>
+      <div class="career-card"><h3>Software Developer</h3></div>
+      <div class="career-card"><h3>AI/ML Intern</h3></div>
+    </div>
+  </section>
+
+  <!-- ============================= RESUME ============================= -->
+  <section id="resume" class="section-pad wrap">
+    <div class="resume-box">
+      <h2>Want to know more about my journey?</h2>
+      <p>Download my resume for a full overview of my education, skills, and project experience.</p>
+      <!-- CONFIG: RESUME LINK — replace with the real resume file path -->
+      <a href="Kusuma_Polina_Resume.pdf" download class="btn btn-primary">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- ============================= CONTACT ============================= -->
+  <section id="contact" class="section-pad wrap">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's talk</h2>
+      <p>Open to internships, placements, and collaboration. Reach out any time.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><div class="label">Email</div><div class="value"><a href="mailto:kusumapolina2@gmail.com">kusumapolina2@gmail.com</a></div></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.13.94.36 1.87.7 2.75a2 2 0 01-.45 2.11L8.1 9.9a16 16 0 006 6l1.35-1.35a2 2 0 012.11-.45c.88.34 1.8.57 2.75.7a2 2 0 011.7 2.1z"/></svg>
+          <div><div class="label">Phone</div><div class="value"><a href="tel:+918639147066">+91 86391 47066</a></div></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="label">Location</div><div class="value">Nashik, Maharashtra, India</div></div>
+        </div>
+      </div>
+      <form id="contactForm" novalidate>
+        <div class="form-field" id="field-name">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name">
+          <div class="form-error">Please enter your name.</div>
+        </div>
+        <div class="form-field" id="field-email">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+          <div class="form-error">Please enter a valid email address.</div>
+        </div>
+        <div class="form-field" id="field-subject">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" autocomplete="off">
+          <div class="form-error">Please enter a subject.</div>
+        </div>
+        <div class="form-field" id="field-message">
+          <label for="message">Message</label>
+          <textarea id="message" name="message"></textarea>
+          <div class="form-error">Please enter a message (at least 10 characters).</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <div class="form-status" id="formStatus" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================= FOOTER ============================= -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div class="name">Kusuma Polina</div>
+      <div class="tag">B.Tech CSE | Artificial Intelligence &amp; Machine Learning</div>
+    </div>
+    <div class="footer-socials">
+      <a class="social-icon" href="https://www.linkedin.com/in/kusuma-polina-18a764403" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 11.01-4.12 2.06 2.06 0 01-.01 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+      </a>
+      <a class="social-icon" href="https://github.com/kusumapoluna23-svg" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.66.5 12.03c0 5.1 3.29 9.42 7.86 10.95.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.55-3.88-1.55-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a10.98 10.98 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.53 10.53 0 0023.5 12.03C23.5 5.66 18.35.5 12 .5z"/></svg>
+      </a>
+      <a class="social-icon" href="mailto:kusumapolina2@gmail.com" aria-label="Send an email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">© 2026 Kusuma Polina. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Theme toggle (persists per-visitor via localStorage) ---------- */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeToggle');
+  function getStoredTheme(){
+    try { return localStorage.getItem('kp-theme'); } catch(e){ return null; }
+  }
+  function setStoredTheme(v){
+    try { localStorage.setItem('kp-theme', v); } catch(e){ /* ignore */ }
+  }
+  var stored = getStoredTheme();
+  if(stored === 'light' || stored === 'dark'){
+    root.setAttribute('data-theme', stored);
+  }
+  themeBtn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    var next = current === 'light' ? 'dark' : 'light';
+    if(next === 'dark'){ root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', 'light'); }
+    setStoredTheme(next);
+  });
+
+  /* ---------- Mobile menu ---------- */
+  var hamburger = document.getElementById('hamburger');
+  var panel = document.getElementById('mobilePanel');
+  hamburger.addEventListener('click', function(){
+    var open = panel.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  panel.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      panel.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------- Contact form validation + mailto submit ---------- */
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+
+  function setFieldState(id, valid){
+    var field = document.getElementById('field-' + id);
+    field.classList.toggle('invalid', !valid);
+  }
+
+  function isValidEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.classList.remove('show', 'success', 'error');
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var subject = document.getElementById('subject').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    var nameValid = name.length > 1;
+    var emailValid = isValidEmail(email);
+    var subjectValid = subject.length > 1;
+    var messageValid = message.length >= 10;
+
+    setFieldState('name', nameValid);
+    setFieldState('email', emailValid);
+    setFieldState('subject', subjectValid);
+    setFieldState('message', messageValid);
+
+    if(!(nameValid && emailValid && subjectValid && messageValid)){
+      status.textContent = 'Please fix the highlighted fields and try again.';
+      status.classList.add('show', 'error');
+      return;
+    }
+
+    /* No backend is configured, so this opens the visitor's email client
+       with the message pre-filled — a genuinely working contact path
+       that needs no server or API key. Swap this for a real backend
+       call if you add one later (see the CONTACT FORM note at the top
+       of this file). */
+    var mailBody = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
+    var mailto = 'mailto:kusumapolina2@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(mailBody);
+
+    window.location.href = mailto;
+
+    status.textContent = 'Opening your email app to send this message to Kusuma...';
+    status.classList.add('show', 'success');
+    form.reset();
+  });
+
+  /* ---------- Hero neural-network canvas animation ---------- */
+  var canvas = document.getElementById('netCanvas');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nodes = [];
+  var W, H, DPR;
+
+  function resize(){
+    var rect = canvas.parentElement.getBoundingClientRect();
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+
+  function initNodes(){
+    var count = Math.max(18, Math.floor((W * H) / 14000));
+    nodes = [];
+    for(var i = 0; i < count; i++){
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: 1.4 + Math.random() * 1.6
+      });
+    }
+  }
+
+  function getAccent(){
+    var v = getComputedStyle(root).getPropertyValue('--accent').trim();
+    return v || '#00d9b8';
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    var accent = getAccent();
+    for(var i = 0; i < nodes.length; i++){
+      var n = nodes[i];
+      if(!reduceMotion){
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > W) n.vx *= -1;
+        if(n.y < 0 || n.y > H) n.vy *= -1;
+      }
+    }
+    for(var a = 0; a < nodes.length; a++){
+      for(var b = a + 1; b < nodes.length; b++){
+        var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 130){
+          ctx.strokeStyle = accent;
+          ctx.globalAlpha = (1 - dist / 130) * 0.35;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[a].x, nodes[a].y);
+          ctx.lineTo(nodes[b].x, nodes[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 0.85;
+    ctx.fillStyle = accent;
+    for(var j = 0; j < nodes.length; j++){
+      ctx.beginPath();
+      ctx.arc(nodes[j].x, nodes[j].y, nodes[j].r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if(!reduceMotion){ requestAnimationFrame(draw); }
+  }
+
+  function boot(){
+    resize();
+    initNodes();
+    draw();
+  }
+  boot();
+  window.addEventListener('resize', function(){
+    resize();
+    initNodes();
+    if(reduceMotion){ draw(); }
+  });
+})();
+</script>
+</body>
+</html>
